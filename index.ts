@@ -119,7 +119,7 @@ const populate = async ()  => {
 
 
 try {
-    (async () => await populate())()
+    (async () => await populate())
     console.log('Dados Inseridos com Sucesso')
 } catch(error) {
     console.log(error)
