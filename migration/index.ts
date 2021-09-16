@@ -1,9 +1,9 @@
-import Usuario from "./model/Usuario";
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import { Permissao } from './enum/Permissao';
-import { Tecnologia } from './enum/Tecnologia';
 
+import Usuario from '../backend/src/model/Usuario';
+import {Permissao} from '../backend/src/enum/Permissao';
+import { Tecnologia } from '../backend/src/enum/Tecnologia';
 
 const uri = process.env.MONGO_URI!
 
