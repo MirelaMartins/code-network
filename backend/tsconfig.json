@@ -67,10 +67,9 @@
   },
   "include": [
     "src",
-    "tests"
+    "test"
   ],
   "exclude": [
-    "node_modules",
-    "jest.config.js"
+    "node_modules"
   ]
 }
