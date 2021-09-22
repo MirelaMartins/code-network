@@ -1,6 +1,6 @@
-import mongoose, { Document, Schema } from 'mongoose';
-import { Tecnologia } from '@/enum/Tecnologia';
+import { Document, Schema } from 'mongoose';
 import { IModulo, ModuloSchema } from '@/model/Modulo';
+import Tecnologia from '@/enum/users/Tecnologia';
 
 export interface ICurso extends Document {
   _id: string,

@@ -1,4 +1,4 @@
-export enum Tecnologia {
+enum Tecnologia {
   javascript = 'JavaScript',
   java = 'Java',
   dotNet = '.NET',
@@ -10,3 +10,5 @@ export enum Tecnologia {
   csharp = 'C#',
   python = 'Python',
 }
+
+export default Tecnologia;

@@ -1,6 +1,6 @@
+import Permissao from '@/enum/users/Permissao';
+import Tecnologia from '@/enum/users/Tecnologia';
 import mongoose, { Schema } from 'mongoose';
-import { Permissao } from '../enum/Permissao';
-import { Tecnologia } from '../enum/Tecnologia';
 import { CursoSchema, ICurso } from './Curso';
 import { DadosBancariosSchema, IDadosBancarios } from './DadosBancarios';
 import { IProgresso, ProgressoSchema } from './Progresso';
