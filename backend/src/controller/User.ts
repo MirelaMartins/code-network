@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { userGetService, userDeleteService, userPostService } from '@/service/User';
+import GeneralApiError from '@/errors/GeneralApiError';
 
 const userGet = async (req: Request, res: Response): Promise<void> => {
-  const data = await userGetService();
+  const { id } = req.params;
+  const data = await userGetService(id);
 
   res.send(data);
 };
@@ -10,12 +12,9 @@ const userGet = async (req: Request, res: Response): Promise<void> => {
 const userPost = async (req: Request, res: Response): Promise<void> => {
   const { data } = req.body;
 
-  const resp = await userPostService(data);
+  await userPostService(data);
 
-  if (!resp) {
-    res.status(503).send('Não foi possível');
-  }
-  res.send('ok');
+  res.status(201);
 };
 
 const userDelete = async (req: Request, res: Response): Promise<void> => {
