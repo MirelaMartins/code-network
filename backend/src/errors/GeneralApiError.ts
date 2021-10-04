@@ -1,10 +1,10 @@
 export default class ApiError {
   public readonly message: Record<string, any>;
 
-  public readonly httpStatusCode: number;
+  public readonly status: number;
 
-  constructor(message: Record<string, any> | any, httpStatusCode: number) {
-    this.httpStatusCode = httpStatusCode;
+  constructor(message: Record<string, any> | any, status: number) {
+    this.status = status;
     this.message = message;
   }
 }

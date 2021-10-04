@@ -1,5 +1,6 @@
  enum UrlPaths {
   home = '/',
+  register = '/register',
   error = '/error'
 }
 

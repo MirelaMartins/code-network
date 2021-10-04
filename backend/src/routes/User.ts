@@ -3,7 +3,7 @@ import { userDelete, userGet, userPost } from '@/controller/User';
 
 const routes = Router();
 
-routes.get('/', userGet);
+routes.get('/:id', userGet);
 
 routes.post('/', userPost);
 
