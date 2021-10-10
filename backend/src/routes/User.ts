@@ -1,11 +1,15 @@
 import { Router } from 'express';
-import { userDelete, userGet, userPost } from '@/controller/User';
+import {
+  userDelete, userGet, userPost, userLogin,
+} from '@/controllers/User';
 
 const routes = Router();
 
 routes.get('/:id', userGet);
 
-routes.post('/', userPost);
+routes.post('/create', userPost);
+
+routes.post('/login', userLogin);
 
 routes.delete('/:id', userDelete);
 

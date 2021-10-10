@@ -1,13 +1,17 @@
 import express from 'express';
 import cors from 'cors';
+
 import ExceptionHandler from './middlewares/ExceptionHandler';
+import AuthHandler from './middlewares/Auth';
+
 import AppRoutes from './routes';
 
 const app = express();
 
 app.use(express.json());
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cors());
+
+app.use(AuthHandler);
 
 app.use('/api/', AppRoutes);
 

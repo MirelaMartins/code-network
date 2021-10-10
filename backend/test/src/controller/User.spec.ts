@@ -1,6 +1,6 @@
 import NotCreated from '@/errors/NotCreated';
-import { IUsuario } from '@/model/Usuario';
-import { postUserDB } from '@/repository/Usuario';
+import { IUser } from '@/models/User';
+import { postUserDB } from '@/databases/Usuario';
 import request from 'supertest';
 import { mocked } from 'ts-jest/utils';
 import app from '../../../src/app';
@@ -12,7 +12,7 @@ jest.mock('../../../src/repository/Usuario');
 describe('userPost Route', () => {
   describe('Should return 201 when ', () => {
     it('a user was created ', async () => {
-      postUserDBMock.mockResolvedValueOnce('ok' as unknown as IUsuario);
+      postUserDBMock.mockResolvedValueOnce('ok' as unknown as IUser);
       const { status } = await request(app)
         .post('/api/user')
         .send({ data: 'ok' });

@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { userGetService, userDeleteService, userPostService } from '@/service/User';
+import {
+  userGetService, userDeleteService, userPostService, userLoginService,
+} from '@/services/User';
 
 const userGet = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
@@ -11,11 +13,9 @@ const userGet = async (req: Request, res: Response): Promise<void> => {
 const userPost = async (req: Request, res: Response): Promise<void> => {
   const { data } = req.body;
 
-  console.log(data);
-
   await userPostService(data);
 
-  res.status(201).send('AE CARALHJO');
+  res.status(201).send('Foi');
 };
 
 const userDelete = async (req: Request, res: Response): Promise<void> => {
@@ -25,4 +25,14 @@ const userDelete = async (req: Request, res: Response): Promise<void> => {
   res.end();
 };
 
-export { userGet, userDelete, userPost };
+const userLogin = async (req: Request, res: Response): Promise<void> => {
+  const { id, password } = req.body;
+
+  const token = await userLoginService(id, password);
+
+  res.send(token);
+};
+
+export {
+  userGet, userDelete, userPost, userLogin,
+};
