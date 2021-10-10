@@ -4,4 +4,6 @@ const env = {
   mongoUri: process.env.MONGO_URI,
 };
 
+Object.freeze(env);
+
 export default env;

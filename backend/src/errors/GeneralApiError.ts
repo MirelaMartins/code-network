@@ -1,4 +1,4 @@
-export default class ApiError {
+export default class GeneralApiError {
   public readonly message: Record<string, any>;
 
   public readonly status: number;
