@@ -2,28 +2,31 @@ import NotCreated from '@/errors/NotCreated';
 import NotFound from '@/errors/NotFound';
 import Unauthorized from '@/errors/Unauthorized';
 import { IUser } from '@/models/User';
-import { deleteUserDB, getUserDB, postUserDB } from '@/repositories/User';
+import { retrieveUser, createUser, deleteUser } from '@/repositories/User';
+import generateAuthToken from './JWT';
 
-const userGetService = async (id: string): Promise<IUser> => {
-  const user = await getUserDB(id);
+const retrieveUserService = async (id: string): Promise<IUser> => {
+  const user = await retrieveUser(id);
 
   return user;
 };
 
-const userPostService = async (data: IUser): Promise<void> => {
-  const user = await postUserDB(data);
+const createUserService = async (data: IUser): Promise<string> => {
+  const user = await createUser(data);
 
   if (!user) throw new NotCreated();
+
+  return generateAuthToken(user._id);
 };
 
-const userDeleteService = async (id: string): Promise<IUser> => {
-  const user = await deleteUserDB(id);
+const deleteUserService = async (id: string): Promise<IUser> => {
+  const user = await deleteUser(id);
 
-  return user as IUser;
+  return user;
 };
 
-const userLoginService = async (id: string, password: string): Promise<string> => {
-  const user = await getUserDB(id);
+const loginUserService = async (id: string, password: string): Promise<string> => {
+  const user = await retrieveUser(id);
 
   if (!user) throw new NotFound();
   if (user.password !== password) throw new Unauthorized();
@@ -32,5 +35,5 @@ const userLoginService = async (id: string, password: string): Promise<string> =
 };
 
 export {
-  userGetService, userDeleteService, userPostService, userLoginService,
+  retrieveUserService, deleteUserService, createUserService, loginUserService,
 };

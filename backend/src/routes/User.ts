@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import {
-  userDelete, userGet, userPost, userLogin,
+  deleteUser, retrieveUser, createUser, userLogin,
 } from '@/controllers/User';
 
 const routes = Router();
 
-routes.get('/:id', userGet);
+routes.get('/:id', retrieveUser);
 
-routes.post('/create', userPost);
+routes.post('/create', createUser);
 
 routes.post('/login', userLogin);
 
-routes.delete('/:id', userDelete);
+routes.delete('/delete', deleteUser);
 
 export default routes;

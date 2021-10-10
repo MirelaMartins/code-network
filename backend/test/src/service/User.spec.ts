@@ -1,28 +1,32 @@
 import { mocked } from 'ts-jest/utils';
+
 import NotCreated from '@/errors/NotCreated';
-import { userPostService } from '../../../src/services/User';
-import { IUser } from '../../../src/models/User';
-import { postUserDB } from '../../../src/repositories/User';
+import { IUser } from '@/models/User';
+import { createUser } from '@/repositories/User';
+import { createUserService } from '@/services/User';
+import generateAuthToken from '@/services/JWT';
 
-const postUserDBMock = mocked(postUserDB, true);
+const createUserMock = mocked(createUser, true);
 
-jest.mock('../../../src/repository/User');
+jest.mock('@/repositories/User');
+Date.now = jest.fn(() => 1487076708000);
 
-describe('userPostService', () => {
-  describe('Should be void ', () => {
+describe('createUserService', () => {
+  describe('Should return a valid jwt string when', () => {
     it('a user was created ', async () => {
-      postUserDBMock.mockResolvedValueOnce('ok' as unknown as IUser);
-      const data = await userPostService('ok' as unknown as IUser);
+      createUserMock.mockResolvedValueOnce({ _id: 'ok' } as unknown as IUser);
+      const data = await createUserService({ _id: 'ok' } as unknown as IUser);
+      const jwt = generateAuthToken('ok');
 
-      expect(data).toBe(undefined);
+      expect(data).toMatch(jwt);
     });
   });
 
   describe('Should throw NotCreated when ', () => {
     it('a user was not created ', async () => {
-      postUserDBMock.mockResolvedValueOnce(null);
+      createUserMock.mockResolvedValueOnce(null);
       try {
-        await userPostService('ok' as unknown as IUser);
+        await createUserService('ok' as unknown as IUser);
       } catch (error) {
         expect(error).toBeInstanceOf(NotCreated);
       }

@@ -9,11 +9,11 @@ import { IJobOpening, JobOpeningSchema } from './JobOpening';
 export interface IUser extends Document{
   _id: string
   name: string
-  email: string
   password: string
+  email: string
   telephone: string
-  address: string
-  bankData: IBankData
+  address?: string
+  bankData?: IBankData
   permission: Permission
   jobOpenings?: IJobOpening[]
   courses?: ICourse[]
@@ -28,7 +28,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   telephone: { type: String, required: true },
-  address: { type: String, required: true },
+  address: { type: String },
   bankData: BankDataSchema,
   permission: { type: String, enum: Permission, required: true },
   jobOpenings: [JobOpeningSchema],

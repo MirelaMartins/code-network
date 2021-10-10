@@ -16,4 +16,5 @@ app.use(AuthHandler);
 app.use('/api/', AppRoutes);
 
 app.use(ExceptionHandler);
+
 export default app;

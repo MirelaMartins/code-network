@@ -1,29 +1,30 @@
+import { mocked } from 'ts-jest/utils';
+import request from 'supertest';
+
 import NotCreated from '@/errors/NotCreated';
 import { IUser } from '@/models/User';
-import { postUserDB } from '@/databases/Usuario';
-import request from 'supertest';
-import { mocked } from 'ts-jest/utils';
-import app from '../../../src/app';
+import { createUser } from '@/repositories/User';
+import app from '@/app';
 
-const postUserDBMock = mocked(postUserDB, true);
+const createUserMock = mocked(createUser, true);
 
-jest.mock('../../../src/repository/Usuario');
+jest.mock('@/repositories/User');
 
 describe('userPost Route', () => {
   describe('Should return 201 when ', () => {
     it('a user was created ', async () => {
-      postUserDBMock.mockResolvedValueOnce('ok' as unknown as IUser);
+      createUserMock.mockResolvedValueOnce('ok' as unknown as IUser);
       const { status } = await request(app)
-        .post('/api/user')
+        .post('/api/user/create')
         .send({ data: 'ok' });
 
-      expect(status).toBe(201);
+      expect(status).toBe(200);
     });
   });
 
   describe('Should return 424 when ', () => {
     it('a user was not created ', async () => {
-      postUserDBMock.mockResolvedValueOnce(null);
+      createUserMock.mockResolvedValueOnce(null);
       try {
         await request(app)
           .post('/api/user')

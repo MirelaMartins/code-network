@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 
 export interface IBankData {
-  bank: string,
+  bank: string
   agency: string
   account: string
   digit: string

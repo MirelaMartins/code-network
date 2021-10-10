@@ -4,6 +4,8 @@ import { verify } from 'jsonwebtoken';
 
 const publicRoutes = [
   '/api/user/login',
+  '/api/user/create',
+  '/api/user/delete',
 ];
 
 const AuthHandler = (req: Request, res: Response, _: NextFunction): void => {

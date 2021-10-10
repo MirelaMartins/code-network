@@ -1,38 +1,38 @@
 import { Request, Response } from 'express';
 import {
-  userGetService, userDeleteService, userPostService, userLoginService,
+  retrieveUserService, deleteUserService, loginUserService, createUserService,
 } from '@/services/User';
 
-const userGet = async (req: Request, res: Response): Promise<void> => {
+const retrieveUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const data = await userGetService(id);
+  const data = await retrieveUserService(id);
 
   res.send(data);
 };
 
-const userPost = async (req: Request, res: Response): Promise<void> => {
+const createUser = async (req: Request, res: Response): Promise<void> => {
   const { data } = req.body;
 
-  await userPostService(data);
+  const auth = await createUserService(data);
 
-  res.status(201);
+  res.send(auth);
 };
 
-const userDelete = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+const deleteUser = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.body;
 
-  await userDeleteService(id);
+  await deleteUserService(id);
   res.end();
 };
 
 const userLogin = async (req: Request, res: Response): Promise<void> => {
   const { id, password } = req.body;
 
-  const token = await userLoginService(id, password);
+  const token = await loginUserService(id, password);
 
   res.send(token);
 };
 
 export {
-  userGet, userDelete, userPost, userLogin,
+  retrieveUser, deleteUser, createUser, userLogin,
 };

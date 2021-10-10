@@ -2,7 +2,7 @@ import { Document, Schema } from 'mongoose';
 import Technology from '@/enums/Technology';
 
 export interface IJobOpening extends Document {
-  _id: string,
+  _id: string
   name?: string
   description?: string
   duration?: Date
