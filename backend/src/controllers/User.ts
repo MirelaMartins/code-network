@@ -15,7 +15,7 @@ const userPost = async (req: Request, res: Response): Promise<void> => {
 
   await userPostService(data);
 
-  res.status(201).send('Foi');
+  res.status(201);
 };
 
 const userDelete = async (req: Request, res: Response): Promise<void> => {
