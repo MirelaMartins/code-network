@@ -1,13 +1,15 @@
 import { Router } from 'express';
+
 import {
   deleteUser, retrieveUser, createUser, userLogin,
 } from '@/controllers/User';
+import validateUserData from '@/validators/user';
 
 const routes = Router();
 
 routes.get('/:id', retrieveUser);
 
-routes.post('/create', createUser);
+routes.post('/create', validateUserData, createUser);
 
 routes.post('/login', userLogin);
 
