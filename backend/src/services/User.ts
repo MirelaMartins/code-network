@@ -6,6 +6,7 @@ import Unauthorized from '@/errors/Unauthorized';
 import { IUser } from '@/models/User';
 import { retrieveUser, createUser, deleteUser } from '@/repositories/User';
 import generateAuthToken from '@/services/JWT';
+import { compareHashedInfo, hashSensitiveInfo } from '@/utils/HashSensitiveInfo';
 
 const retrieveUserService = async (id: string): Promise<LeanDocument<IUser>> => {
   const user = await retrieveUser(id);
@@ -13,8 +14,9 @@ const retrieveUserService = async (id: string): Promise<LeanDocument<IUser>> => 
   return user;
 };
 
-const createUserService = async (data: IUser): Promise<string> => {
-  const user = await createUser(data);
+const createUserService = async (userData: IUser): Promise<string> => {
+  const password = await hashSensitiveInfo(userData.password);
+  const user = await createUser({ ...userData, password });
 
   if (!user) throw new NotCreated();
 
@@ -31,9 +33,10 @@ const loginUserService = async (id: string, password: string): Promise<string> =
   const user = await retrieveUser(id);
 
   if (!user) throw new NotFound();
-  if (user.password !== password) throw new Unauthorized();
 
-  return 'ok';
+  if (await compareHashedInfo(password, user.password)) return generateAuthToken(user._id);
+
+  throw new Unauthorized();
 };
 
 export {

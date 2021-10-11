@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+
 import {
   retrieveUserService, deleteUserService, loginUserService, createUserService,
 } from '@/services/User';
+import { IUser } from '@/models/User';
 
 const retrieveUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
@@ -11,9 +13,9 @@ const retrieveUser = async (req: Request, res: Response): Promise<void> => {
 };
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
-  const { data } = req.body;
+  const userData: IUser = req.body;
 
-  const auth = await createUserService(data);
+  const auth = await createUserService(userData);
 
   res.send(auth);
 };
