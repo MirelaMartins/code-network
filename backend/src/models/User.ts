@@ -1,12 +1,11 @@
 import Permission from '@/enums/Permission';
 import Technology from '@/enums/Technology';
-import mongoose, { Schema } from 'mongoose';
-import { CourseSchema, ICourse } from './Course';
+import mongoose, { Schema, Document } from 'mongoose';
 import { BankDataSchema, IBankData } from './BankData';
 import { IProgress, ProgressSchema } from './Progress';
 import { IJobOpening, JobOpeningSchema } from './JobOpening';
 
-export interface IUser extends Document{
+export interface IUser extends Document {
   _id: string
   name: string
   password: string
@@ -16,7 +15,7 @@ export interface IUser extends Document{
   bankData?: IBankData
   permission: Permission
   jobOpenings?: IJobOpening[]
-  courses?: ICourse[]
+  coursesOwnership?: string[]
   technologies?: Technology[]
   certificates?: string[]
   progress?: IProgress[]
@@ -30,9 +29,9 @@ const UserSchema = new Schema({
   telephone: { type: String, required: true },
   address: { type: String },
   bankData: BankDataSchema,
-  permission: { type: String, enum: Permission, required: true },
+  permission: { type: Number, enum: Permission, required: true },
   jobOpenings: [JobOpeningSchema],
-  courses: [CourseSchema],
+  coursesOwnership: [{ type: String, required: true }],
   technologies: { type: [String], enum: Technology },
   certificates: [{ type: String }],
   progress: [ProgressSchema],
