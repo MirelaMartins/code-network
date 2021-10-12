@@ -5,6 +5,7 @@ const env = {
   jwtSecret: process.env.JWT_SECRET,
   jwtExpirationTime: process.env.JWT_EXPIRATION_TIME,
   salt: parseInt(process.env.SALT, decimalBase),
+  where: process.env.WHERE,
 };
 
 Object.freeze(env);
