@@ -10,7 +10,7 @@ const main = async () => {
   try {
     await mongoose.connect(env.mongoUri);
     app.listen(env.port, () => {
-      console.info(`Server running at: localhost:${env.port}`);
+      console.info(`Server running at: http://localhost:${env.port}`);
     });
   } catch (error) {
     const message = (error === typeof Object) ? JSON.stringify(error) : error as string;
