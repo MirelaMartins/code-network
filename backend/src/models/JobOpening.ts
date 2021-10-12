@@ -15,7 +15,7 @@ export interface IJobOpening extends Document {
 
 export const JobOpeningSchema = new Schema({
   _id: { type: String, required: true },
-  nome: { type: String },
+  name: { type: String },
   description: { type: String },
   duration: { type: Date },
   technologies: { type: [String], enum: Technology, required: true },
