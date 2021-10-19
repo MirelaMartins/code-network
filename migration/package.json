@@ -1,0 +1,17 @@
+{
+  "name": "code-network-backend",
+  "version": "0.0.1",
+  "scripts": {
+    "populate": "yarn && yarn ts-node index.ts"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.1",
+    "ts-node-dev": "^1.1.8"
+  }
+}
