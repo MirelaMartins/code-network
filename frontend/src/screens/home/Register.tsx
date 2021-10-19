@@ -2,34 +2,34 @@ import axios from 'axios'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
-interface IUsuario {
+interface IUser {
   _id: string
-  nome: string
+  name: string
   email: string
-  telefone: string
-  endereco: string
-  dadosBancarios: {
-    banco: string,
-    agencia: string,
-    conta: string,
-    digito: string,
-    tipo: string
+  telephone: string
+  address: string
+  bankData: {
+    bank: string,
+    agency: string,
+    account: string,
+    digit: string,
+    type: string
   }
-  permissao: number
+  permission: number
 }
 const RegisterComponent: React.FC = () => {
-  const { register, handleSubmit } = useForm<IUsuario>()
+  const { register, handleSubmit } = useForm<IUser>()
 
-  const onSubmit = async (data: IUsuario) => {
-    const dadosBancarios = {
-      banco: 'banco',
-      agencia: 'banco',
-      conta: 'banco',
-      digito: 'banco',
-      tipo: 'banco'
+  const onSubmit = async (data: IUser) => {
+    const bankData = {
+      bank: 'banco',
+      agency: 'banco',
+      account: 'banco',
+      digit: 'banco',
+      type: 'banco'
     }
-    const permissao = 0
-    const resp = await axios.post('http://localhost:4000/api/user', { data: { ...data, dadosBancarios, permissao } }, { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
+    const permission = 0
+    const resp = await axios.post('http://localhost:4000/api/user', { data: { ...data, bankData, permission } }, { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
     console.log(resp)
   }
   return (
