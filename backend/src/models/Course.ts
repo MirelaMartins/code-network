@@ -7,7 +7,7 @@ export interface ICourse extends Document {
   id: string,
   name?: string
   description?: string
-  duration?: string[]
+  duration?: string
   technologies?: Technology[]
   creationDate?: Date
   numberOfGraduates?: number

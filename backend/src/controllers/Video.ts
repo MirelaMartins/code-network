@@ -9,8 +9,9 @@ const retrieveVideo = async (req: Request, res: Response): Promise<void> => {
   const gridFSBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db);
 
   const { filename } = req.params;
-  const { range } = req.headers;
+  let { range } = req.headers;
 
+  if (!range) range = '0';
   const file = await File.findById(filename);
 
   if (!file) throw new NotFound();

@@ -31,7 +31,7 @@ const UserSchema = new Schema({
   bankData: BankDataSchema,
   permission: { type: Number, enum: Permission, required: true },
   jobOpenings: [JobOpeningSchema],
-  coursesOwnership: [{ type: String, required: true }],
+  coursesOwnership: [{ type: String}],
   technologies: { type: [String], enum: Technology },
   certificates: [{ type: String }],
   progress: [ProgressSchema],

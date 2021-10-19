@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
-import GeneralApiError from '@/errors/GeneralApiError';
 import { NextFunction, Request, Response } from 'express';
 import { isCelebrate } from 'celebrate';
+import GeneralApiError from '@/errors/GeneralApiError';
 
 const ExceptionHandler = (error: Error | GeneralApiError, req: Request, res: Response, _: NextFunction): Response => {
   if (error instanceof GeneralApiError) {

@@ -1,5 +1,5 @@
-import env from '@/configs/Env';
 import { sign } from 'jsonwebtoken';
+import env from '@/configs/Env';
 
 const generateAuthToken = (id: string): string => sign({
   id,

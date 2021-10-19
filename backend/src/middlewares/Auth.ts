@@ -1,6 +1,6 @@
-import Unauthorized from '@/errors/Unauthorized';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+import Unauthorized from '@/errors/Unauthorized';
 
 const publicRoutes = [
   '/api/user/login',

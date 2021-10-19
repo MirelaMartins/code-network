@@ -8,6 +8,6 @@ export interface IProgress {
 }
 
 export const ProgressSchema = new Schema({
-  idCourse: { type: String, required: true },
-  moduleStep: { type: Array, required: true },
+  idCourse: { type: String },
+  moduleStep: { type: Array },
 }, { _id: false });
