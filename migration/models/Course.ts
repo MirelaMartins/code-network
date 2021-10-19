@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-import { IModule, ModuleSchema } from '@/models/Module';
-import Technology from '@/enums/Technology';
+import { IModule, ModuleSchema } from './Module';
+import Technology from '../enums/Technology';
 
 export interface ICourse extends Document {
   name?: string

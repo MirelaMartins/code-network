@@ -6,6 +6,7 @@ interface IUser {
   _id: string
   name: string
   email: string
+  password: string
   telephone: string
   address: string
   bankData: {
@@ -21,21 +22,14 @@ const RegisterComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<IUser>()
 
   const onSubmit = async (data: IUser) => {
-    const bankData = {
-      bank: 'banco',
-      agency: 'banco',
-      account: 'banco',
-      digit: 'banco',
-      type: 'banco'
-    }
     const permission = 0
-    const resp = await axios.post('http://localhost:4000/api/user', { data: { ...data, bankData, permission } }, { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
+    const resp = await axios.post('http://192.168.15.13:4000/api/user/create', {...data,  permission } , { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
     console.log(resp)
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="field">
-        <label htmlFor="_id">Name</label>
+        <label htmlFor="_id">Document</label>
         <input
           type="text"
           id="_id"
@@ -44,11 +38,20 @@ const RegisterComponent: React.FC = () => {
         />
       </div>
       <div className="field">
-        <label htmlFor="nome">Name</label>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
-          id="nome"
-          name="nome"
+          id="name"
+          name="name"
+          ref={register({ required: true })}
+        />
+      </div>
+      <div className="field">
+        <label htmlFor="name">password</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
           ref={register({ required: true })}
         />
       </div>
@@ -62,20 +65,20 @@ const RegisterComponent: React.FC = () => {
         />
       </div>
       <div className="field">
-        <label htmlFor="telefone">telefone</label>
+        <label htmlFor="telephone">Telefone</label>
         <input
           type="string"
-          id="telefone"
-          name="telefone"
+          id="telephone"
+          name="telephone"
           ref={register({ required: true })}
         />
       </div>
       <div className="field">
-        <label htmlFor="endereco">endereco</label>
+        <label htmlFor="address">endereco</label>
         <input
           type="string"
-          id="endereco"
-          name="endereco"
+          id="address"
+          name="address"
           ref={register({ required: true })}
         />
       </div>

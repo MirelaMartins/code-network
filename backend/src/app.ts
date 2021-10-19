@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-if (env.where !== 'DEV') app.use(AuthHandler);
+// if (env.where !== 'DEV') app.use(AuthHandler);
 
 app.use('/api/', AppRoutes);
 
