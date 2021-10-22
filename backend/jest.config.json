@@ -6,7 +6,8 @@
   "preset": "ts-jest",
   "testEnvironment": "node",
   "setupFiles": ["dotenv/config"],
-  "globalSetup": "<rootDir>/test/EnvSetup.ts"
+  "globalSetup": "<rootDir>/test/EnvSetup.ts",
+  "testMatch": [ "**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)" ]
 }
 
 
