@@ -5,7 +5,7 @@ import NotFound from '@/errors/NotFound';
 import Unauthorized from '@/errors/Unauthorized';
 import { ICourse } from '@/models/Course';
 import {
-  retrieveCourse, createCourse, deleteCourse, updateCourse,
+  retrieveCourse, createCourse, deleteCourse, updateCourse, getAllCourses
 } from '@/repositories/Course';
 import Permission from '@/enums/Permission';
 import { retrieveUserService } from './User';
@@ -39,6 +39,13 @@ const deleteCourseService = async (id: string): Promise<LeanDocument<ICourse>> =
   return Course;
 };
 
+const getAllCoursesService = async (): Promise<LeanDocument<ICourse>[]> => {
+  const course = await getAllCourses();
+
+  if (!course) throw new NotFound();
+  return course;
+};
+
 export {
-  retrieveCourseService, deleteCourseService, createCourseService, updateCourseService,
+  retrieveCourseService, deleteCourseService, createCourseService, updateCourseService, getAllCoursesService,
 };

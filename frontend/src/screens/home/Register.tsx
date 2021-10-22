@@ -23,7 +23,7 @@ const RegisterComponent: React.FC = () => {
 
   const onSubmit = async (data: IUser) => {
     const permission = 0
-    const resp = await axios.post('http://192.168.15.13:4000/api/user/create', {...data,  permission } , { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
+    const resp = await axios.post('http://localhost:4000/api/user/create', { ...data, permission }, { headers: { 'Content-Type': 'application/json;charset=utf-8', 'Access-Control-Allow-Origin': '*' } })
     console.log(resp)
   }
   return (
