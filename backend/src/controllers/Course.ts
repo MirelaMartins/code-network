@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import {
-  retrieveCourseService, deleteCourseService, createCourseService, updateCourseService,
+  retrieveCourseService, deleteCourseService, createCourseService, updateCourseService, getAllCoursesService,
 } from '@/services/Course';
 
 const retrieveCourse = async (req: Request, res: Response): Promise<void> => {
@@ -35,6 +35,12 @@ const deleteCourse = async (req: Request, res: Response): Promise<void> => {
   res.end();
 };
 
+const getAllCourses = async (req: Request, res: Response): Promise<void> => {
+  const data = await getAllCoursesService();
+
+  res.send(data);
+};
+
 export {
-  retrieveCourse, deleteCourse, createCourse, updateCourse,
+  retrieveCourse, deleteCourse, createCourse, updateCourse, getAllCourses,
 };

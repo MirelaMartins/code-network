@@ -6,7 +6,8 @@ const deleteCourse = async (id: string): Promise<LeanDocument<ICourse>> => Cours
 const updateCourse = async (id: string, update: Record<string, any>): Promise<any> => Course
   . updateOne({ id }, update).lean().exec();
 const createCourse = async (data: ICourse): Promise<ICourse> => Course.create(data);
+const getAllCourses = async (): Promise<LeanDocument<ICourse>[]> => Course.find().lean().exec();
 
 export {
-  retrieveCourse, deleteCourse, createCourse, updateCourse,
+  retrieveCourse, deleteCourse, createCourse, updateCourse, getAllCourses,
 };
