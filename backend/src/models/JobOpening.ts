@@ -1,4 +1,5 @@
-import { Document, Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+
 import Technology from '@/enums/Technology';
 
 export interface IJobOpening extends Document {
@@ -11,6 +12,7 @@ export interface IJobOpening extends Document {
   endDate?: Date
   requirements?: string[]
   applicants?: string[]
+  jobsOwnership?: string[]
 }
 
 export const JobOpeningSchema = new Schema({
@@ -24,3 +26,7 @@ export const JobOpeningSchema = new Schema({
   requirements: [{ type: String }],
   applicants: [{ type: String }],
 }, { _id: false });
+
+const JobOpening = mongoose.model<IJobOpening>('jobs', JobOpeningSchema);
+
+export default JobOpening;
