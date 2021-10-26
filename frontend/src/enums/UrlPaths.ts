@@ -1,7 +1,9 @@
  enum UrlPaths {
   home = '/',
   register = '/register',
-  error = '/error'
+  login = '/login',
+  error = '/error',
+  video = '/video'
 }
 
 export default UrlPaths

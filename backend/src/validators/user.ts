@@ -6,9 +6,8 @@ const validateUserData = celebrate({
     name: Joi.string().required(),
     password: Joi.string().required(),
     email: Joi.string().required(),
-    address: Joi.string().required(),
     telephone: Joi.string().required(),
-    permission: Joi.number().required().default(0),
+    permission: Joi.number().default(0),
   }),
 });
 

@@ -45,6 +45,7 @@
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-throw-literal": "off",
     "max-len": "off",
+    "@typescript-eslint/naming-convention": "off",
     "no-underscore-dangle": "off",
     "import/extensions": [
       "error",

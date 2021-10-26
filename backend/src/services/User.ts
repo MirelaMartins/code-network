@@ -34,7 +34,9 @@ const loginUserService = async (id: string, password: string): Promise<string> =
 
   if (!user) throw new NotFound();
 
-  if (await compareHashedInfo(password, user.password)) return generateAuthToken(user._id);
+  if (await compareHashedInfo(password, user.password)) {
+    return generateAuthToken(id);
+  }
 
   throw new Unauthorized();
 };

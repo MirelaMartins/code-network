@@ -1,18 +1,13 @@
-
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
 
-import UrlPaths from '../enums/UrlPaths'
-import Home from '../screens/home/Home'
-import Register from '../screens/home/Register'
+import PublicRoutes from './PublicRoutes'
+import PrivateRoutes from './PrivateRoutes'
+import { useAuth } from '../contexts/Auth'
 
 const Routes: React.FC = () => {
-  return (
-    <Switch>
-      <Route exact path={UrlPaths.home} component={Home} />
-      <Route exact path={UrlPaths.register} component={Register} />
-    </Switch>
-  )
+  const { user } = useAuth()
+
+  return user ? < PrivateRoutes /> : < PublicRoutes/>
 }
 
 export default Routes

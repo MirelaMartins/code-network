@@ -6,8 +6,8 @@ import {
 import { IUser } from '@/models/User';
 
 const retrieveUser = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
-  const data = await retrieveUserService(id);
+  const { _id } = req.params;
+  const data = await retrieveUserService(_id);
 
   res.send(data);
 };
@@ -21,16 +21,16 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
 };
 
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.body;
+  const { _id } = req.body;
 
-  await deleteUserService(id);
+  await deleteUserService(_id);
   res.end();
 };
 
 const userLogin = async (req: Request, res: Response): Promise<void> => {
-  const { id, password } = req.body;
+  const { _id, password } = req.body;
 
-  const token = await loginUserService(id, password);
+  const token = await loginUserService(_id, password);
 
   res.send(token);
 };

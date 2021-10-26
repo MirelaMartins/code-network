@@ -1,6 +1,6 @@
+import mongoose, { Schema, Document } from 'mongoose';
 import Permission from '../enums/Permission';
 import Technology from '../enums/Technology';
-import mongoose, { Schema, Document } from 'mongoose';
 import { BankDataSchema, IBankData } from './BankData';
 import { IProgress, ProgressSchema } from './Progress';
 import { IJobOpening, JobOpeningSchema } from './JobOpening';
@@ -31,7 +31,7 @@ const UserSchema = new Schema({
   bankData: BankDataSchema,
   permission: { type: Number, enum: Permission, required: true },
   jobOpenings: [JobOpeningSchema],
-  coursesOwnership: [{ type: String}],
+  coursesOwnership: [{ type: String }],
   technologies: { type: [String], enum: Technology },
   certificates: [{ type: String }],
   progress: [ProgressSchema],
