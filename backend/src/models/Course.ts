@@ -7,6 +7,7 @@ export interface ICourse extends Document {
   name?: string
   description?: string
   duration?: string
+  image?: string
   technologies?: Technology[]
   creationDate?: Date
   numberOfGraduates?: number
@@ -17,6 +18,7 @@ export const CourseSchema = new Schema({
   name: { type: String },
   description: { type: String },
   duration: [{ type: String }],
+  image: { type: String },
   technologies: { type: [String], enum: Technology, required: true },
   creationDate: { type: Date },
   numberOfGraduates: { type: Number, default: 0 },

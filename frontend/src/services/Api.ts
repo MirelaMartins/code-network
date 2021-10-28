@@ -6,8 +6,10 @@ export const apiService = axios.create({
 })
 
 class ApiService {
-  static registerUser = (data: IUser) =>
-    apiService.post('user/create', data)
+  static registerUser = (data: IUser) => apiService.post('user/create', data)
+  static getAllCourses = () => apiService.get('course/')
+  static getAllJobs = () => apiService.get('jobs/')
+  static patchUser = (data: Partial<IUser>) => apiService.patch('user/recover-password', data)
 
   static login = (data: Partial<IUser>) => apiService.post('user/login', data)
   static playVideo = () => apiService.post('upload/7fea670fd64912fa06dd42911ff4cc3e')

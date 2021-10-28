@@ -4,6 +4,7 @@ import ApiService, { apiService } from '../services/Api'
 
 interface UserInfo {
   name: string,
+  email: string,
 }
 
 interface AuthContextData {

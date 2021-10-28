@@ -20,7 +20,7 @@ const createUserService = async (userData: IUser): Promise<string> => {
 
   if (!user) throw new NotCreated();
 
-  return generateAuthToken(user._id);
+  return generateAuthToken(user.name, user.email);
 };
 
 const deleteUserService = async (id: string): Promise<LeanDocument<IUser>> => {
@@ -35,7 +35,7 @@ const loginUserService = async (id: string, password: string): Promise<string> =
   if (!user) throw new NotFound();
 
   if (await compareHashedInfo(password, user.password)) {
-    return generateAuthToken(id);
+    return generateAuthToken(user.name, user.email);
   }
 
   throw new Unauthorized();

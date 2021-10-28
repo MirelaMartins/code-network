@@ -9,7 +9,7 @@ routes.get('/:id', retrieveJob);
 
 routes.post('/create', createJob);
 
-routes.put('/:idJob', updateJob);
+routes.put('/:id', updateJob);
 
 routes.delete('/:id', deleteJob);
 

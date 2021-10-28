@@ -7,6 +7,8 @@ export interface IJobOpening extends Document {
   name?: string
   description?: string
   duration?: Date
+  payment?: string
+  image?: string
   technologies?: Technology[]
   creationDate?: Date
   endDate?: Date
@@ -19,6 +21,8 @@ export const JobOpeningSchema = new Schema({
   _id: { type: String, required: true },
   name: { type: String },
   description: { type: String },
+  image: { type: String },
+  payment: { type: String },
   duration: { type: Date },
   technologies: { type: [String], enum: Technology, required: true },
   creationDate: { type: Date },

@@ -3,7 +3,8 @@
   register = '/register',
   login = '/login',
   error = '/error',
-  video = '/video'
+  video = '/video',
+  recoverPassword = '/recover-password'
 }
 
 export default UrlPaths
