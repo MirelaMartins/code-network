@@ -21,21 +21,18 @@ const RegisterComponent: React.FC = () => {
         <div className="grid-container">
           <div className="login-area">
             <div className="login-logo">
-              <img
-
-              />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="E-mail"
-                  ref={register({ required: 'Digite seu email' })}
+                  id="_id"
+                  name="_id"
+                  placeholder="_id"
+                  ref={register({ required: 'Digite seu cpf' })}
                 />
-                {errors.email && <p>{errors.email?.message}</p>}
+                {errors._id && <p>{errors._id?.message}</p>}
               </div>
               <div className="form-group">
                 <input
@@ -48,7 +45,7 @@ const RegisterComponent: React.FC = () => {
                 />
                 {errors.password && <p>{errors.password?.message}</p>}
               </div>
-              <button className="btn btn-info btn-lg btn-block" type="button">Entrar</button>
+              <button className="btn btn-info btn-lg btn-block" type="submit">Entrar</button>
             </form>
             <p className="small mb-5 pb-lg-2"><a className="text" onClick={() => history.push('/recover-password')}>Esqueceu a senha?</a></p>
             <p>Não possui uma conta? <a onClick={() => history.push('/register')} className="link-info">Cadastre-se</a></p>

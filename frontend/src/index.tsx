@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
-      <NavBar/>
+        <NavBar/>
         <Routes/>
       </Router>
     </AuthProvider>
