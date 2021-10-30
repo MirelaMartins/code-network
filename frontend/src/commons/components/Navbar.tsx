@@ -1,12 +1,12 @@
 import React from 'react'
-import { NavBarStyle } from '../styles/Navbar'
-import UrlPaths from '../../enums/UrlPaths'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 
+import { NavBarStyle } from '../styles/Navbar'
+import UrlPaths from '../../enums/UrlPaths'
+
 const NavbarD: React.FC = () => {
   const location = useLocation()
-  console.log(location)
   return (
     <NavBarStyle>
       <Navbar>
