@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-import NavbarD from './commons/components/Navbar'
+import NavBar from './commons/components/Navbar'
 import { AuthProvider } from './contexts/Auth'
 import Routes from './routes'
 
@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
-      <NavbarD/>
+      <NavBar/>
         <Routes/>
       </Router>
     </AuthProvider>

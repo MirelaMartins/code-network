@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { NavBarStyle } from '../styles/Navbar'
 import UrlPaths from '../../enums/UrlPaths'
 
-const NavbarD: React.FC = () => {
+const NavBar: React.FC = () => {
   const location = useLocation()
   return (
     <NavBarStyle>
@@ -22,4 +22,4 @@ const NavbarD: React.FC = () => {
   )
 }
 
-export default NavbarD
+export default NavBar
