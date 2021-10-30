@@ -1,37 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Course } from '../../../models/Course'
 import { Job } from '../../../models/Job'
 import ApiService from '../../../services/Api'
 
 const HomeComponent: React.FC = () => {
-  const [courses, setCourses] = useState<Course>()
+  const [courses, setCourses] = useState<Course[]>()
   const [jobs, setJobs] = useState<Job>()
   const history = useHistory()
 
-  const initialize = async () => {
-    const respCourse = await ApiService.getAllCourses()
-    const respJobs = await ApiService.getAllJobs()
-    console.log(respCourse.data)
-    setCourses(respCourse.data)
-    setCourses(respJobs.data)
-    setJobs(respJobs.data)
-  }
-  initialize()
+  useEffect(() => {
+    async function initialize(){
+    const { data } = await ApiService.getAllCourses()
+    //const respJobs = await ApiService.getAllJobs()
+    console.log(data)
+    setCourses(data)
+    //setJobs(respJobs.data)
+    }
+    initialize()
+  }, []);
 
   return (
     <>
-      <h1>{courses}</h1>
-      <h1>{courses?.description}</h1>
-      <h1>{courses?.duration}</h1>
-      <h1>{courses?.image}</h1>
-      <h1>{courses?.name}</h1>
-      <h1>{jobs?.description}</h1>
-      <h1>{jobs?.payment}</h1>
-      <h1>{jobs?.image}</h1>
-      <h1>{jobs?.name}</h1>
-      <button onClick={() => history.push('/register')}>Cadastre-se</button>
-      <button onClick={() => history.push('/login')}>Acessar</button>
+      <div>{JSON.stringify(courses)}</div>
+      <br></br>
+      <button type="button" className="btn btn-primary" onClick={() => history.push('/register')}>Cadastro</button>
+      <button type="button" className="btn btn-success" onClick={() => history.push('/login')}>Login</button>
     </>
   )
 }

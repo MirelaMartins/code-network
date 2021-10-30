@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+import { Course } from '../models/Course'
 import { IUser } from '../models/User'
 
 export const apiService = axios.create({
@@ -7,7 +8,7 @@ export const apiService = axios.create({
 
 class ApiService {
   static registerUser = (data: IUser) => apiService.post('user/create', data)
-  static getAllCourses = () => apiService.get('course/')
+  static getAllCourses = ():Promise<AxiosResponse<Course[]>> => apiService.get('course/')
   static getAllJobs = () => apiService.get('jobs/')
   static patchUser = (data: Partial<IUser>) => apiService.patch('user/recover-password', data)
 
