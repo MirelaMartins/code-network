@@ -71,8 +71,8 @@ const RegisterComponent: React.FC = () => {
         {errors.telephone && <p>{errors.telephone?.message}</p>}
         <p/>
         <button className="btn btn-primary mb-3" type="submit">Finalizar Cadastro</button>
-        </form>
-        <button className="btn btn-danger mb-3" onClick={() => history.push('/login')}>Voltar</button>
+      </form>
+      <button className="btn btn-danger mb-3" onClick={() => history.push('/login')}>Voltar</button>
     </div>
   )
 }

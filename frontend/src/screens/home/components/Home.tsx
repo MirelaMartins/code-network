@@ -10,15 +10,15 @@ const HomeComponent: React.FC = () => {
   const history = useHistory()
 
   useEffect(() => {
-    async function initialize(){
-    const { data } = await ApiService.getAllCourses()
-    //const respJobs = await ApiService.getAllJobs()
-    console.log(data)
-    setCourses(data)
-    //setJobs(respJobs.data)
+    async function initialize () {
+      const { data } = await ApiService.getAllCourses()
+      // const respJobs = await ApiService.getAllJobs()
+      console.log(data)
+      setCourses(data)
+    // setJobs(respJobs.data)
     }
     initialize()
-  }, []);
+  }, [])
 
   return (
     <>

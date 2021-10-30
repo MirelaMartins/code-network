@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Navbar } from './commons/components/Navbar'
+import NavbarD from './commons/components/Navbar'
 import { AuthProvider } from './contexts/Auth'
 import Routes from './routes'
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <Navbar/>
+      <NavbarD/>
       <Router>
         <Routes/>
       </Router>
