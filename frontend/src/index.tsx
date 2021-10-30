@@ -8,8 +8,8 @@ import Routes from './routes'
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <NavbarD/>
       <Router>
+      <NavbarD/>
         <Routes/>
       </Router>
     </AuthProvider>

@@ -14,4 +14,7 @@ export const NavBarStyle = styled.div`
   .nav-link:hover {
     font-weight: bold;
   }
+  .active {
+    background-color:red !important;
+  }
 `
