@@ -44,12 +44,14 @@ const AuthProvider: React.FC = ({ children }) => {
     }
   }, [])
 
-  const Login = async (data: Partial<IUser>) => {
+  const Login = async (data: Partial<IUser>): Promise<number> => {
     const response = await ApiService.login(data)
-    setUser(response.data)
-    apiService.defaults.headers.Authorization = `Bearer ${response.data}`
-    sessionStorage.setItem('@code-network:token', response.data)
-    sessionStorage.setItem('@code-network:user', JSON.stringify(decodeToken(response.data)))
+    const user = decodeToken(response)
+    setUser(user)
+    apiService.defaults.headers.Authorization = `Bearer ${response}`
+    sessionStorage.setItem('@code-network:token', response)
+    sessionStorage.setItem('@code-network:user', JSON.stringify(user))
+    return 200
   }
 
   const Logout = () => {
