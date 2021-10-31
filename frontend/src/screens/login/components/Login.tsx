@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { IUser } from '../../../models/User'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../../../contexts/Auth'
+import ErrorsStatusText from '../../../models/ErrorsStatusText'
 import './Login.css'
+import { Alert } from 'react-bootstrap'
 
-const RegisterComponent: React.FC = () => {
+const LoginComponent: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<Partial<IUser>>()
   const history = useHistory()
   const { Login } = useAuth()
+  const [show, setShow] = useState(false)
 
   const onSubmit = async (data: Partial<IUser>) => {
-    await Login(data as any)
-    history.push('/video')
+    try {
+      await Login(data as any)
+      history.push('/video')
+    } catch (error) {
+      if (error.message === ErrorsStatusText.Unauthorized) {
+        setShow(true)
+      }
+    }
   }
 
   return (
     <>
+      <Alert show={show} variant='danger' onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Falha no login</Alert.Heading>
+        <p>Revise seus dados e tente novamente</p>
+      </Alert>
       <div className="my-background-class">
         <div className="grid-container">
           <div className="login-area">
@@ -52,8 +65,9 @@ const RegisterComponent: React.FC = () => {
           </div>
         </div>
       </div>
+
     </>
   )
 }
 
-export default RegisterComponent
+export default LoginComponent

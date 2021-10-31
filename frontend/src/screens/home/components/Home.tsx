@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from 'react'
+import { Card } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import { Course } from '../../../models/Course'
-import { Job } from '../../../models/Job'
+import { ICourse, IJobOpening  } from '../../../models'
 import ApiService from '../../../services/Api'
 
 const HomeComponent: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>()
-  const [jobs, setJobs] = useState<Job>()
+  const [courses, setCourses] = useState<ICourse[]>()
+  const [jobs, setJobs] = useState<IJobOpening[]>()
   const history = useHistory()
 
   useEffect(() => {
     async function initialize () {
-      const { data } = await ApiService.getAllCourses()
-      // const respJobs = await ApiService.getAllJobs()
-      console.log(data)
-      setCourses(data)
-    // setJobs(respJobs.data)
+      const courseData = await ApiService.getAllCourses()
+      const jobsData = await ApiService.getAllJobs()
+      console.log(courseData)
+      setCourses(courseData)
+      setJobs(jobsData)
     }
     initialize()
   }, [])
 
   return (
     <>
-      <div>{JSON.stringify(courses)}</div>
+    {courses && courses?.map(course =>
+          <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>{course.name}</Card.Title>
+            <Card.Text>{course.description}</Card.Text>
+            <Card.Img>{course.image}</Card.Img>
+            {/* <Card.Link href="#">{course.}</Card.Link> */}
+          </Card.Body>
+        </Card>
+    )}
+
+<br></br>
+
+{jobs && jobs?.map(job =>
+          <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>{job.name}</Card.Title>
+            <Card.Text>{job.description}</Card.Text>
+            <Card.Img>{job.image}</Card.Img>
+            {/* <Card.Link href="#">{course.}</Card.Link> */}
+          </Card.Body>
+        </Card>
+    )}
+
       <br></br>
       <button type="button" className="btn btn-primary" onClick={() => history.push('/register')}>Cadastro</button>
       <button type="button" className="btn btn-success" onClick={() => history.push('/login')}>Login</button>
