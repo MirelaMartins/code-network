@@ -11,4 +11,4 @@ enum Technology {
   python = 'Python',
 }
 
-export default Technology;
+export default Technology

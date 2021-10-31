@@ -1,4 +1,4 @@
-import Technology from "../enums/Technology";
+import Technology from '../enums/Technology'
 
 export interface IJobOpening extends Document {
   _id: string
