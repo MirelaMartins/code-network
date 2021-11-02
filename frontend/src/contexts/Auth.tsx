@@ -10,7 +10,7 @@ interface UserInfo {
 interface AuthContextData {
   signed: boolean
   user: UserInfo | null;
-  Login(token: UserInfo): Promise<void>;
+  Login(token: Partial<IUser>): Promise<void>;
   Logout(unauthorized?: boolean): void;
 }
 

@@ -1,79 +1,104 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { IUser } from '../../../models/User'
 import ApiService from '../../../services/Api'
 import { useHistory } from 'react-router-dom'
-import { saveUserInfoOnStorage } from '../../../contexts/Auth'
+import { useAuth } from '../../../contexts/Auth'
 import './Register.css'
+import { Button, Container, Form, InputGroup, Alert } from 'react-bootstrap'
 
 const RegisterComponent: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IUser>()
+  const [showError, setShowError] = useState<boolean>(false)
+  const { Login } = useAuth()
   const history = useHistory()
 
   const onSubmit = async (data: IUser) => {
-    const resp = await ApiService.registerUser(data)
-    saveUserInfoOnStorage(resp.data)
-    history.push('/video')
+    try {
+      await ApiService.registerUser(data)
+      Login({ _id: data._id, password: data.password })
+      history.push('/video')
+    } catch (e) {
+      setShowError(true)
+    }
   }
 
   return (
-    <div className="form-register">
-      <p><h2>Favor preencher os dados abaixo:</h2></p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit)}>
 
-        <label htmlFor="id">CPF</label>
-        <input
-          type="number"
-          className="form-control"
-          id="_id"
-          name="_id"
-          ref={register({ required: 'Digite seu CPF' })}
-        />
-        {errors._id && <p>{errors._id?.message}</p>}
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="_id" >CPF</InputGroup.Text>
+          <Form.Control
+            placeholder= {errors._id?.message as string || 'Digite somente os números do seu CPF'}
+            aria-label="_id"
+            name="_id"
+            aria-describedby="_id"
+            ref={register({ required: 'CPF não pode ser vazio!' })}
+            isInvalid={!!errors._id}
+          />
+        </InputGroup>
 
-        <label htmlFor="name">Nome Completo</label>
-        <input
-          type="text"
-          className="form-control"
-          id="name"
-          name="name"
-          ref={register({ required: 'Digite seu nome' })}
-        />
-        {errors.name && <p>{errors.name?.message}</p>}
-        <label htmlFor="password">Senha</label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          ref={register({ required: 'Digite sua senha' })}
-        />
-        {errors.password && <p>{errors.password?.message}</p>}
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="name" >Nome</InputGroup.Text>
+          <Form.Control
+            placeholder= {errors.name?.message as string || 'Nome completo'}
+            aria-label="name"
+            name="name"
+            aria-describedby="name"
+            ref={register({ required: 'Nome não pode ser vazio!' })}
+            isInvalid={!!errors.name}
+          />
+        </InputGroup>
 
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          name="email"
-          ref={register({ required: 'Digite seu email' })}
-        />
-        {errors.email && <p>{errors.email?.message}</p>}
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="telephone">Telefone</InputGroup.Text>
+          <Form.Control
+            placeholder= {errors.telephone?.message as string || 'Digite somente os números do seu telefone'}
+            aria-label="telephone"
+            name="telephone"
+            aria-describedby="telephone"
+            ref={register({ required: 'Telefone não pode ser vazio!' })}
+            isInvalid={!!errors.telephone}
+          />
+        </InputGroup>
 
-        <label htmlFor="telephone">Telefone</label>
-        <input
-          type="phone"
-          className="form-control"
-          id="telephone"
-          name="telephone"
-          ref={register({ required: 'Digite seu telefone' })}
-        />
-        {errors.telephone && <p>{errors.telephone?.message}</p>}
-        <p/>
-        <button className="btn btn-primary mb-3" type="submit">Finalizar Cadastro</button>
-      </form>
-      <button className="btn btn-danger mb-3" onClick={() => history.push('/login')}>Voltar</button>
-    </div>
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="email">Email</InputGroup.Text>
+          <Form.Control
+            placeholder= {errors.email?.message as string || 'Digite seu email'}
+            aria-label="email"
+            name="email"
+            aria-describedby="email"
+            ref={register({ required: 'Email não pode ser vazio!' })}
+            isInvalid={!!errors.email}
+          />
+        </InputGroup>
+
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="password">Senha</InputGroup.Text>
+          <Form.Control
+            placeholder={errors.password?.message as string || 'Digite sua senha'}
+            aria-label="password"
+            name="password"
+            aria-describedby="password"
+            ref={register({ required: 'Senha não pode ser vazia!' })}
+            isInvalid={!!errors.password}
+          />
+        </InputGroup>
+
+        <Button variant="primary" type="submit">Submit</Button>
+      </Form>
+
+      {showError &&
+      <Alert variant='danger'>
+        <Alert.Heading>Não foi possível realizar o cadastro!</Alert.Heading>
+        <p>revise seus dados e tente novamente</p>
+        <Button onClick={() => setShowError(false)} variant="danger">Ok</Button>
+      </Alert>
+      }
+
+    </Container>
   )
 }
 
