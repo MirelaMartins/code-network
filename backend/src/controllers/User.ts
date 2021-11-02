@@ -17,7 +17,7 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
 
   const auth = await createUserService(userData);
 
-  res.send(auth);
+  res.status(201).end();
 };
 
 const deleteUser = async (req: Request, res: Response): Promise<void> => {

@@ -19,6 +19,8 @@ const createUserService = async (userData: IUser): Promise<string> => {
   const user = await createUser({ ...userData, password });
 
   if (!user) throw new NotCreated();
+  console.log(generateAuthToken(user.name, user.email))
+
 
   return generateAuthToken(user.name, user.email);
 };
