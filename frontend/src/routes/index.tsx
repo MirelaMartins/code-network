@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import { useAuth } from '../contexts/Auth'
 import UrlPaths from '../enums/UrlPaths'
 import Home from '../screens/home'
+import KnowledgeComponent from '../screens/knowledge'
 import Login from '../screens/login'
 import NotFound from '../screens/not-found'
 import RecoverPassword from '../screens/recover-password'
@@ -19,6 +20,7 @@ const Routes: React.FC = () => {
       <Route exact path={UrlPaths.register} component={Register} />
       <Route exact path={UrlPaths.login} component={Login} />
       <Route exact path={UrlPaths.recoverPassword} component={RecoverPassword} />
+      <Route exact path={UrlPaths.knowledges} component={KnowledgeComponent} />
       { user &&
       <Route exact path={UrlPaths.video} component={Video} />
       }

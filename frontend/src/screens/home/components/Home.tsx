@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Image, Card, Col, Container, Row } from 'react-bootstrap'
 import { ICourse, IJobOpening } from '../../../models'
 import ApiService from '../../../services/Api'
-import {ImageDiv} from './styled'
+import {BodyHome, CardsBG, CardsBG2, ImageDiv, Separator} from './styled'
 
 const HomeComponent: React.FC = () => {
   const [courses, setCourses] = useState<ICourse[]>()
@@ -23,8 +23,12 @@ const HomeComponent: React.FC = () => {
       <ImageDiv>
       <Image src={require('../../../commons/images/CODE_NETWORK_logo.png')} />
       </ImageDiv>
-    <Container>
+      <Separator >
+      </Separator>
+    <BodyHome>
       <h1>Cursos</h1>
+      <CardsBG>
+        <CardsBG2>
       <Row>
         {courses && courses?.map(course =>
           <Col>
@@ -39,9 +43,13 @@ const HomeComponent: React.FC = () => {
           </Col>
     )}
       </Row>
+      </CardsBG2>
+      </CardsBG>
       <br></br>
 
       <h1>Vagas</h1>
+      <CardsBG>
+        <CardsBG2>
       <Row>
         {jobs && jobs?.map(job =>
           <Col>
@@ -56,8 +64,12 @@ const HomeComponent: React.FC = () => {
           </Col>
     )}
       </Row>
-    </Container>
-    </>
+      </CardsBG2>
+      </CardsBG>
+    </BodyHome>
+    <Separator >
+      </Separator>
+</>
   )
 }
 
