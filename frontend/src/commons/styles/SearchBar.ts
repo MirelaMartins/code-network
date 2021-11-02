@@ -1,20 +1,17 @@
+import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { Colors } from './Colors'
 
-export const NavBarStyle = styled.div`
+export const SearchBarStyle = styled.div`
   background-color: ${Colors.primary2};
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  .nav-link {
-    color: white !important;
+  .nav-item {
+    padding-left:10px
   }
-  .nav-link:hover {
-    font-weight: bold;
+
+  .login {
+    background-color: ${Colors.primary}
   }
-  .active {
-    background-color:red !important;
+  .register {
+    background-color: ${Colors.accent}
   }
 `

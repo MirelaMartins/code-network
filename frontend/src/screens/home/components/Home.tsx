@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Col, Row } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { Image, Card, Col, Container, Row } from 'react-bootstrap'
 import { ICourse, IJobOpening } from '../../../models'
 import ApiService from '../../../services/Api'
+import {ImageDiv} from './styled'
 
 const HomeComponent: React.FC = () => {
   const [courses, setCourses] = useState<ICourse[]>()
   const [jobs, setJobs] = useState<IJobOpening[]>()
-  const history = useHistory()
 
   useEffect(() => {
     async function initialize () {
       const courseData = await ApiService.getAllCourses()
       const jobsData = await ApiService.getAllJobs()
-      console.log(courseData)
       setCourses(courseData)
       setJobs(jobsData)
     }
@@ -22,6 +20,11 @@ const HomeComponent: React.FC = () => {
 
   return (
     <>
+      <ImageDiv>
+      <Image src={require('../../../commons/images/CODE_NETWORK_logo.png')} />
+      </ImageDiv>
+    <Container>
+      <h1>Cursos</h1>
       <Row>
         {courses && courses?.map(course =>
           <Col>
@@ -29,7 +32,7 @@ const HomeComponent: React.FC = () => {
               <Card.Body>
                 <Card.Title>{course.name}</Card.Title>
                 <Card.Text>{course.description}</Card.Text>
-                <Card.Img>{course.image}</Card.Img>
+                <Card.Img src={`data:image/jpeg;base64,${course.image}`} ></Card.Img>
                 {/* <Card.Link href="#">{course.}</Card.Link> */}
               </Card.Body>
             </Card>
@@ -38,6 +41,7 @@ const HomeComponent: React.FC = () => {
       </Row>
       <br></br>
 
+      <h1>Vagas</h1>
       <Row>
         {jobs && jobs?.map(job =>
           <Col>
@@ -45,16 +49,14 @@ const HomeComponent: React.FC = () => {
               <Card.Body>
                 <Card.Title>{job.name}</Card.Title>
                 <Card.Text>{job.description}</Card.Text>
-                <Card.Img>{job.image}</Card.Img>
+                <Card.Img src={`data:image/jpeg;base64,${job.image}`} ></Card.Img>
                 {/* <Card.Link href="#">{course.}</Card.Link> */}
               </Card.Body>
             </Card>
           </Col>
     )}
       </Row>
-      <br></br>
-      <button type="button" className="btn btn-primary" onClick={() => history.push('/register')}>Cadastro</button>
-      <button type="button" className="btn btn-success" onClick={() => history.push('/login')}>Login</button>
+    </Container>
     </>
   )
 }

@@ -1,28 +1,39 @@
 import React from 'react'
-import { Button, Container, Nav, Navbar } from 'react-bootstrap'
-import { useLocation } from 'react-router-dom'
+import { Button, Nav, Navbar, Image } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { SearchBarStyle } from '../styles/SearchBar'
 import { useAuth } from '../../contexts/Auth'
 
 const SearchBar: React.FC = () => {
   const { user, Logout } = useAuth()
-  const location = useLocation()
+  const history = useHistory()
   return (
-    <Nav >
-      {user ? <Button onClick={() => Logout()}>{user.name}</Button>
-        : <>
-          <Navbar className="justify-content-end">
+    <SearchBarStyle>
+      <Nav className="justify-content-end" >
+        <Navbar.Brand>
+          <Image fluid
+          src={require('../images/CODE_NETWORK_logo.png')}
+          width='25%'
+          height= 'auto'
+          />
+        </Navbar.Brand>
+        {user
+          ? <Navbar >
             <Nav.Item>
-              <Button>Cadastre-se</Button>
-            </Nav.Item>
-
-            <Nav.Item>
-              <Button>Acessar</Button>
+              <Button onClick={() => Logout()}>{user.name}</Button>
             </Nav.Item>
           </Navbar>
-        </>
-      }
-
-    </Nav>
+          : <Navbar >
+            <Nav.Item>
+              <Button type="button" className='register' onClick={() => history.push('/register')}>Cadastre-se</Button>
+            </Nav.Item>
+            <Nav.Item>
+              <Button type="button" className='login' onClick={() => history.push('/login')}>Acessar</Button>
+            </Nav.Item>
+          </Navbar>
+        }
+      </Nav>
+    </SearchBarStyle>
   )
 }
 
