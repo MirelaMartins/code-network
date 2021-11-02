@@ -3,11 +3,6 @@ import { Colors } from './Colors'
 
 export const NavBarStyle = styled.div`
   background-color: ${Colors.primary};
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   .nav-link {
     color: white !important;
   }
@@ -15,6 +10,10 @@ export const NavBarStyle = styled.div`
     font-weight: bold;
   }
   .active {
-    background-color:red !important;
+    background-color:white !important;
+    color: ${Colors.primary} !important;
+    border-style: solid;
+    border-radius: 5px;
+    font-weight: bold;
   }
 `
