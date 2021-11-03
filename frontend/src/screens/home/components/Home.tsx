@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, Card, Col, Container, Row } from 'react-bootstrap'
+import { Image, Card, Col, Row } from 'react-bootstrap'
 import { ICourse, IJobOpening } from '../../../models'
 import ApiService from '../../../services/Api'
 import {BodyHome, CardsBG, CardsBG2, ImageDiv, Separator} from './styled'

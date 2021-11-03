@@ -42,7 +42,7 @@ const LoginComponent: React.FC = () => {
                   className="form-control"
                   id="_id"
                   name="_id"
-                  placeholder="_id"
+                  placeholder="CPF"
                   ref={register({ required: 'Digite seu cpf' })}
                 />
                 {errors._id && <p>{errors._id?.message}</p>}

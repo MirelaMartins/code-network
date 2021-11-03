@@ -13,6 +13,7 @@ export const ImageDiv = styled.div`
     width: auto;
   }
 `
+
 export const BodyHome = styled.div`
   max-height: 100%;
   height 990px;

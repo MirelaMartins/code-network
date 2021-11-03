@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { Colors } from './Colors'
 
@@ -9,9 +8,11 @@ export const SearchBarStyle = styled.div`
   }
 
   .login {
-    background-color: ${Colors.primary}
+    background-color: ${Colors.primary};
+    border: none;
   }
   .register {
-    background-color: ${Colors.accent}
+    background-color: ${Colors.accent};
+    border: none;
   }
 `

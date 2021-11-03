@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Breadcrumb, Button } from 'react-bootstrap'
+import { Col, Row, Breadcrumb, Button, Dropdown } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { ICourse } from '../../../models'
 import ApiService from '../../../services/Api'
 import {BodyHome, ComponentGrid, ExGrid, InGrid} from './styled'
 
-const KnowledgeComponent: React.FC = () => {
+const AreasComponent: React.FC = () => {
   const [courses, setCourses] = useState<ICourse[]>()
   const history = useHistory()
   
@@ -24,10 +24,25 @@ const KnowledgeComponent: React.FC = () => {
         <ExGrid>
             <Breadcrumb>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                <Breadcrumb.Item active>Conhecimentos</Breadcrumb.Item>
+                <Breadcrumb.Item active>Áreas</Breadcrumb.Item>
               </Breadcrumb>
             <InGrid>
-                <h1>Conhecimentos</h1>
+                <h1>Áreas</h1>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        Selecione a área
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                    {courses && courses?.map(course =>
+                    <>
+                        <Dropdown.Item onClick={() => history.push('/*')}>{course.name}</Dropdown.Item>
+                    </>
+                    )}
+                    </Dropdown.Menu>
+                </Dropdown>
+
+
                     {courses && courses?.map(course =>
                     <>
                       <ComponentGrid>
@@ -73,4 +88,4 @@ const KnowledgeComponent: React.FC = () => {
   )
 }
 
-export default KnowledgeComponent
+export default AreasComponent
