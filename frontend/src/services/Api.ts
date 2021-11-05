@@ -10,6 +10,7 @@ apiService.interceptors.response.use((resp: AxiosResponse) => resp.data, (err: A
 class ApiService {
   static registerUser = (data: IUser) => apiService.post('user/create', data)
   static getAllCourses = ():Promise<ICourse[]> => apiService.get('course/')
+  static getCourse = (id:string):Promise<ICourse[]> => apiService.get(`course?id=${id}`)
   static getAllJobs = (): Promise<IJobOpening[]> => apiService.get('job/')
   static getAllTests = (): Promise<ITests[]> => apiService.get('tests/')
   static patchUser = (data: Partial<IUser>) => apiService.patch('user/recover-password', data)

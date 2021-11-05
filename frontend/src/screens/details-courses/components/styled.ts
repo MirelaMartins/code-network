@@ -45,7 +45,7 @@ export const InGrid = styled.div`
 `
 
 export const ComponentGrid = styled.div`
-  height 160px;
+  height px;
   width: 100%;
   max-width: 2200px;
   background-color: #fafafa;
@@ -60,7 +60,7 @@ export const ComponentGrid = styled.div`
   .access {
     background-color: ${Colors.primary};
     border: none;
-    margin-left: 10px;
+    margin-left: 1000px;
   }
 
   .visualize {
@@ -68,19 +68,19 @@ export const ComponentGrid = styled.div`
     border: none;
     margin-left: 40px;
   }
-
-`
-export const ButtomStyle = styled.div`
-  background-color: ${Colors.primary2};
-  .nav-item {
-    padding-left:10px
+  
+  .details{
+    white-space: pre-wrap;
+    margin-left: 40px;
+    margin-top: 10px;
+  }
+  
+  .imagem{
+    padding-left: 50%;
   }
 
-  .login {
+  .favorite{
     background-color: ${Colors.primary};
-    border: none;
   }
-  .register {
-    background-color: ${Colors.accent}
-  }
+
 `

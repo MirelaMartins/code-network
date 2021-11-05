@@ -6,6 +6,7 @@ import Technology from '@/enums/Technology';
 export interface ICourse extends Document {
   name?: string
   description?: string
+  details?: string
   duration?: string
   image?: string
   technologies?: Technology[]
@@ -17,6 +18,7 @@ export interface ICourse extends Document {
 export const CourseSchema = new Schema({
   name: { type: String },
   description: { type: String },
+  details: { type: String },
   duration: [{ type: String }],
   image: { type: String },
   technologies: { type: [String], enum: Technology, required: true },

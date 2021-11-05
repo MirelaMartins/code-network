@@ -8,7 +8,8 @@
   knowledges = '/knowledge',
   tests = '/tests',
   enterprises = '/enterprises',
-  areas = '/areas'
+  areas = '/areas',
+  details = '/details-courses'
 }
 
 export default UrlPaths

@@ -13,6 +13,7 @@ import NotFound from '../screens/not-found'
 import RecoverPassword from '../screens/recover-password'
 import Register from '../screens/register'
 import Video from '../screens/video'
+import Details from '../screens/details-courses'
 
 
 
@@ -28,6 +29,7 @@ const Routes: React.FC = () => {
       <Route exact path={UrlPaths.knowledges} component={KnowledgeComponent} />
       <Route exact path={UrlPaths.areas} component={AreasComponent} />
       <Route exact path={UrlPaths.tests} component={TestsComponent} />
+      <Route exact path={UrlPaths.details} component={Details}/>
       <Route exact path={UrlPaths.enterprises} component={EnterpriseComponent} />
       { user &&
       <Route exact path={UrlPaths.video} component={Video} />

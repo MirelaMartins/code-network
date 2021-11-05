@@ -59,7 +59,10 @@ const KnowledgeComponent: React.FC = () => {
                         </Col>
                         <Col style={{ display: 'block', width: 300 }}>
                         <Button type="button" className='access' onClick={() => history.push('/login')}>Acessar</Button>
-                        <Button type="button" className='visualize' onClick={() => history.push('/*')}>Visualizar</Button>
+                        <Button type="button" className='visualize' onClick={() => history.push({
+                          pathname:'/details-courses',
+                          state:{id:course._id}
+                          })}>Visualizar</Button>
                         </Col>
                       </Row>
 
